@@ -1,0 +1,22 @@
+{
+  "name": "vest-jupyter-hub",
+  "version": "0.0.1",
+  "description": "The docker image and network to get Jupyter Hub deployed on Code Engine for VEST Workshops. Initially supporting Langchain labs, but possibly expanded in the future.",
+  "main": "index.js",
+  "scripts": {
+    "build": "docker build --tag jupyterhub-server .",
+    "start": "docker run --name jupyterhub --network jupyterhub-network -v './jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro' -v '/var/run/docker.sock:/var/run/docker.sock:rw' -v 'jupyterhub-data:/data' -p 8000:8000 jupyterhub-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krab7191/vest-jupyterhub"
+  },
+  "keywords": [
+    "jupyter hub",
+    "jupyter notebook",
+    "jupyter lab",
+    "jupyter"
+  ],
+  "author": "Karsten Rabe <karstenrabe91@gmail.com>",
+  "license": "MIT"
+}
