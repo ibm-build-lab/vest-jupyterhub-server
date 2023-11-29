@@ -12,7 +12,7 @@ c.JupyterHub.spawner_class = "dockerspawner.DockerSpawner"
 c.DockerSpawner.image = os.environ["DOCKER_NOTEBOOK_IMAGE"]
 
 # Connect containers to the Docker network
-network_name = os.environ["DOCKER_NETWORK_NAME"]
+network_name = os.environ.get("DOCKER_NETWORK_NAME", "jupyterhub-network")
 c.DockerSpawner.use_internal_ip = True
 c.DockerSpawner.network_name = network_name
 

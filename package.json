@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "docker build --tag jupyterhub-server .",
-    "start": "docker run --name jupyterhub --network jupyterhub-network -v './jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro' -v '/var/run/docker.sock:/var/run/docker.sock:rw' -v 'jupyterhub-data:/data' -p 8000:8000 jupyterhub-server"
+    "postbuild": "docker network create jupyterhub-network",
+    "start": "docker run --name jupyterhub --network jupyterhub-network -v './jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py:ro' -v '/var/run/docker.sock:/var/run/docker.sock:rw' -v 'jupyterhub-data:/data' -e DOCKER_NOTEBOOK_IMAGE='vest-langchain-jupyter-notebook' -p 8000:8000 jupyterhub-server"
   },
   "repository": {
     "type": "git",
